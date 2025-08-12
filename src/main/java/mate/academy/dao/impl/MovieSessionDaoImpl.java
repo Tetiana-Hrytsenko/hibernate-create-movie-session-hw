@@ -51,7 +51,7 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
         LocalDateTime timeFrom = date.atStartOfDay();
         LocalDateTime timeTo = date.plusDays(1).atStartOfDay();
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from MovieSession ms where ms.movie = :movieId "
+            return session.createQuery("from MovieSession ms where ms.movie.id = :movieId "
                             + "and ms.showTime between :timeFrom  and :timeTo", MovieSession.class)
                     .setParameter("movieId", movieId)
                     .setParameter("timeFrom", timeFrom)
